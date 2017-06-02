@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask
+from flask_prometheus import monitor 
 
 app = Flask(__name__)
 
@@ -8,4 +9,5 @@ def index():
     return "Chris"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80,debug=True)
+    monitor(app, port=8000)
+    app.run(host='0.0.0.0', port=80)
