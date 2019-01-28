@@ -1,5 +1,6 @@
 FROM python:alpine
 COPY app.py /app/ 
+COPY names.txt /app/
 COPY requirements.txt /app/
 WORKDIR /app
 RUN pip install -r requirements.txt
