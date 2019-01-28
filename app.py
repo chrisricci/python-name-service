@@ -1,7 +1,7 @@
 #!flask/bin/python
 from flask import Flask
 from flask_prometheus import monitor 
-from random
+import random
 
 app = Flask(__name__)
 
