@@ -5,11 +5,13 @@ import random
 
 app = Flask(__name__)
 
-names = open('names.txt', 'r')
+f = open('names.txt', 'r')
+names = f.readlines()
+f.close()
 
 @app.route('/')
 def index():
-    return random.choice(names)
+    return random.choice(names).strip()
 
 if __name__ == '__main__':
     monitor(app, port=8000)
