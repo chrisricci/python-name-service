@@ -6,6 +6,7 @@ from opentracing.propagation import Format
 from jaeger_client import Config
 import random
 import logging
+import sys
 
 app = Flask(__name__)
 def init_tracer(service):
@@ -35,7 +36,9 @@ def index():
     span_ctx = tracer.extract(Format.HTTP_HEADERS, request.headers)
     span_tags = {tags.SPAN_KIND: tags.SPAN_KIND_RPC_SERVER}
     with tracer.start_span('get-name', child_of=span_ctx, tags=span_tags):
-        return random.choice(names).strip()
+        name = random.choice(names).strip()
+        app.logger.debug('NAME: ' + name)
+        return name
 
 if __name__ == '__main__':
     monitor(app, port=8000)
