@@ -1,7 +1,6 @@
 #!flask/bin/python
 from flask import Flask
 from flask_prometheus import monitor 
-from lib.tracing import init_tracer
 from opentracing.ext import tags
 from opentracing.propagation import Format
 import random
